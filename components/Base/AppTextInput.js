@@ -1,16 +1,26 @@
 import React from 'react'
-import { TextInput } from 'react-native'
-import styled from 'styled-components/native'
+import { TextInput, StyleSheet } from 'react-native'
 import { blue } from '../../utils/colors'
 
-const Input = styled.TextInput`
-  margin-top: 10px;
-  padding-bottom: 8px;
-  padding-left: 4px;
-`
-
-function AppTextInput({ placeholder }) {
-  return <Input underlineColorAndroid={blue} placeholder={placeholder} selectionColor={blue} borderColor={blue} />
+function AppTextInput({ placeholder, change }) {
+  return (
+    <TextInput
+      underlineColorAndroid={blue}
+      placeholder={placeholder}
+      selectionColor={blue}
+      borderColor={blue}
+      onChangeText={change}
+      style={styles.textInput}
+    />
+  )
 }
+
+const styles = StyleSheet.create({
+  textInput: {
+    marginTop: 10,
+    paddingBottom: 8,
+    paddingLeft: 4
+  }
+})
 
 export default AppTextInput

@@ -1,15 +1,16 @@
 import React from 'react'
-import { View } from 'react-native'
-import styled from 'styled-components/native'
+import { View, StyleSheet } from 'react-native'
 import { lightGray } from '../../utils/colors'
 
-const Wrapper = styled.View`
-  flex: 1;
-  background-color: ${props => props.bgColor};
-`
-
 function ViewWrapper({ children }) {
-  return <Wrapper bgColor={lightGray}>{children}</Wrapper>
+  return <View style={styles.container}>{children}</View>
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: lightGray
+  }
+})
 
 export default ViewWrapper

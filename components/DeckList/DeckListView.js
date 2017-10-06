@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList } from 'react-native'
-import styled from 'styled-components/native'
 import Deck from './Deck'
 import ViewWrapper from '../Base/ViewWrapper'
 import { lightGray } from '../../utils/colors'

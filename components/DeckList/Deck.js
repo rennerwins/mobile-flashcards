@@ -1,38 +1,37 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-import styled from 'styled-components/native'
+import { View, Text, StyleSheet } from 'react-native'
 import { white, gray } from '../../utils/colors'
-
-const DeckWrapper = styled.View`
-  background-color: ${props => props.bgColor};
-  height: 200px;
-  padding: 30px 20px;
-  margin: 15px;
-  border-radius: 2px;
-  elevation: 5;
-  shadow-color: blue;
-  justify-content: center;
-  align-items: center;
-`
-
-const DeckTitle = styled.Text`
-  font-size: 26px;
-  text-align: center;
-  background-color: ${props => props.bgColor};
-`
-
-const DeckCardsCount = styled.Text`
-  font-size: 18px;
-  color: ${props => props.color};
-`
 
 function Deck({ title, cards }) {
   return (
-    <DeckWrapper bgColor={white}>
-      <DeckTitle bgColor={white}>{title}</DeckTitle>
-      <DeckCardsCount color={gray}>{cards} cards</DeckCardsCount>
-    </DeckWrapper>
+    <View style={styles.container}>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.cards}>{cards} cards</Text>
+    </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: white,
+    height: 200,
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+    borderRadius: 2,
+    elevation: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 15
+  },
+  title: {
+    fontSize: 26,
+    textAlign: 'center',
+    backgroundColor: white
+  },
+  cards: {
+    fontSize: 18,
+    color: gray
+  }
+})
 
 export default Deck
