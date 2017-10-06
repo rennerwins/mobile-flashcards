@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { View, Text, FlatList } from 'react-native'
 import styled from 'styled-components/native'
 import Deck from './Deck'
-
-const DeckListWrapper = styled.View`flex: 1;`
+import ViewWrapper from '../Base/ViewWrapper'
+import { lightGray } from '../../utils/colors'
 
 class DeckListView extends Component {
   state = {
@@ -17,12 +17,9 @@ class DeckListView extends Component {
 
   render() {
     return (
-      <DeckListWrapper>
-        <FlatList
-          data={this.state.decks}
-          renderItem={({ item }) => <Deck key={item.key} {...item} />}
-        />
-      </DeckListWrapper>
+      <ViewWrapper>
+        <FlatList data={this.state.decks} renderItem={({ item }) => <Deck key={item.key} {...item} />} />
+      </ViewWrapper>
     )
   }
 }
