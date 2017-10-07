@@ -4,7 +4,7 @@ import { white, gray } from '../../utils/colors'
 
 function Deck({ title, cards }) {
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.cards}>{cards} cards</Text>
     </View>
