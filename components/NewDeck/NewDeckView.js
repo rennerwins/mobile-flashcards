@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native'
+import { View, Text, StyleSheet, TouchableNativeFeedback, KeyboardAvoidingView } from 'react-native'
 import AppTextInput from '../Base/AppTextInput'
 import ViewWrapper from '../Base/ViewWrapper'
 import { blue, white } from '../../utils/colors'
@@ -10,30 +10,32 @@ class NewDeckView extends Component {
   }
 
   handleSubmit = () => {
-    console.log('hello')
+    console.log(this.state.title)
   }
 
   render() {
+    const { title } = this.state
+
     return (
-      <ViewWrapper>
-        <View style={styles.container}>
-          <Text style={styles.header}>What is the title of your new deck?</Text>
-          <AppTextInput placeholder="Deck Title" change={title => this.setState({ title })} value={this.state.title} />
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+        <Text style={styles.header}>What is the title of your new deck?</Text>
+        <AppTextInput
+          placeholder="Deck Title"
+          change={title => this.setState({ title })}
+          value={title}
+        />
 
-          <View style={{ alignItems: 'center', marginTop: 20 }}>
-            <TouchableNativeFeedback
-              onPress={this.handleSubmit}
-              background={TouchableNativeFeedback.SelectableBackground()}
-            >
-              <View style={styles.button}>
-                <Text style={styles.buttonText}>SUBMIT</Text>
-              </View>
-            </TouchableNativeFeedback>
-          </View>
-
-          <Text>{this.state.title}</Text>
+        <View style={{ alignItems: 'center', marginTop: 20 }}>
+          <TouchableNativeFeedback
+            onPress={this.handleSubmit}
+            background={TouchableNativeFeedback.SelectableBackground()}
+          >
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>SUBMIT</Text>
+            </View>
+          </TouchableNativeFeedback>
         </View>
-      </ViewWrapper>
+      </KeyboardAvoidingView>
     )
   }
 }

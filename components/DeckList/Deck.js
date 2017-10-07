@@ -4,7 +4,7 @@ import { white, gray } from '../../utils/colors'
 
 function Deck({ title, cards }) {
   return (
-    <View style={styles.container}>
+    <View>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.cards}>{cards} cards</Text>
     </View>
@@ -21,7 +21,9 @@ const styles = StyleSheet.create({
     elevation: 4,
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 15
+    marginHorizontal: 15,
+    marginTop: 10,
+    marginBottom: 15
   },
   title: {
     fontSize: 26,

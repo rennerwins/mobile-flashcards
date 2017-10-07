@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, StyleSheet } from 'react-native'
 import Deck from './Deck'
 import ViewWrapper from '../Base/ViewWrapper'
 import { lightGray } from '../../utils/colors'
@@ -16,11 +16,22 @@ class DeckListView extends Component {
 
   render() {
     return (
-      <ViewWrapper>
-        <FlatList data={this.state.decks} renderItem={({ item }) => <Deck key={item.key} {...item} />} />
-      </ViewWrapper>
+      <View style={styles.container}>
+        <FlatList
+          data={this.state.decks}
+          renderItem={({ item }) => <Deck key={item.key} {...item} />}
+        />
+      </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: 5
+  }
+})
 
 export default DeckListView
