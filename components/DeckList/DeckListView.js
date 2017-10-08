@@ -24,8 +24,7 @@ class DeckListView extends Component {
   selectDeck = (title) => {
     console.log('title', title)
   }
- 
-  // renderItem = ({ item }) => console.log(item)
+  
   renderItem = ({ item }) => <Deck {...item} press={() => this.selectDeck(item.title)} />
 
   render() {
