@@ -16,10 +16,10 @@ class IndividualDeckView extends Component {
     getDeck(id).then(deck => this.setState(() => ({ deck, ready: true })))
   }
 
-  handleSubmit = () => {
-    console.log('handle submit')
+  addNewCard = title => {
+    this.props.navigation.navigate('NewCardView', { title })
   }
- 
+
   render() {
     const { deck, ready } = this.state
 
@@ -36,7 +36,7 @@ class IndividualDeckView extends Component {
 
         <View style={styles.buttonAction}>
           <AppAndroidButton
-            press={this.handleSubmit}
+            press={() => this.addNewCard(deck.title)}
             backgroundColor={white}
             borderColor={blue}
             title="Add Card"

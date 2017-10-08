@@ -3,6 +3,7 @@ import { blue, white, lightBlue } from '../../utils/colors'
 import DeckListView from '../DeckList/DeckListView'
 import NewDeckView from '../NewDeck/NewDeckView'
 import IndividualDeckView from '../IndividualDeck/IndividualDeckView'
+import NewCardView from '../NewCard/NewCardView'
 
 const Tabs = TabNavigator(
   {
@@ -52,6 +53,19 @@ const MainNavigator = StackNavigator({
         backgroundColor: blue
       },
       headerTitle: `${navigation.state.params.id}`,
+      headerTitleStyle: {
+        width: 500
+      }
+    })
+  },
+  NewCardView: {
+    screen: NewCardView,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue
+      },
+      headerTitle: 'Add Card',
       headerTitleStyle: {
         width: 500
       }

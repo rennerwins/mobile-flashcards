@@ -28,13 +28,15 @@ export function saveDeckTitle(title) {
     }
   })
 
-  
   return AsyncStorage.mergeItem(MOBILE_FLASHCARDS_KEY, deck)
 }
 
 // addCardToDeck: take in two arguments, title and card,
 // and will add the card to the list of questions for the deck with the associated title.
-export function addCardToDeck(title, card) {}
+export function addCardToDeck(title, card) {
+  console.log('add new card to deck')
+  // return AsyncStorage.mergeItem(MOBILE_FLASHCARDS_KEY, newCard)
+}
 
 export function clearAll() {
   console.log('clear all')
