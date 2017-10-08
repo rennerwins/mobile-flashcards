@@ -19,8 +19,9 @@ function AppTextInput({ placeholder, change, value }) {
 const styles = StyleSheet.create({
   textInput: {
     marginTop: 10,
-    paddingBottom: 8,
-    paddingLeft: 4
+    paddingBottom: 10,
+    paddingLeft: 4,
+    fontSize: 18
   }
 })
 
