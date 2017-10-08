@@ -2,7 +2,8 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { white, gray } from '../../utils/colors'
 
-function Deck({ title, cards }) {
+function Deck(props, { title, cards }) {
+  console.log(props)
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>

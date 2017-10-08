@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableNativeFeedback, KeyboardAvoidingView } from 'react-native'
 import AppTextInput from '../Base/AppTextInput'
-import ViewWrapper from '../Base/ViewWrapper'
 import { blue, white } from '../../utils/colors'
+import { saveDeckTitle } from '../../utils/api'
 
 class NewDeckView extends Component {
   state = {
@@ -10,7 +10,8 @@ class NewDeckView extends Component {
   }
 
   handleSubmit = () => {
-    console.log(this.state.title)
+    const { title } = this.state
+    saveDeckTitle(title)
   }
 
   render() {
@@ -42,24 +43,25 @@ class NewDeckView extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
-    paddingVertical: 100
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 20
   },
   header: {
-    fontSize: 36,
+    fontSize: 30,
     textAlign: 'center',
-    marginBottom: 40
+    marginBottom: 10
   },
   button: {
-    width: 200,
+    width: 160,
     backgroundColor: blue,
     borderRadius: 2
   },
   buttonText: {
     color: white,
     textAlign: 'center',
-    fontSize: 18,
-    paddingVertical: 12
+    fontSize: 16,
+    paddingVertical: 10
   }
 })
 
