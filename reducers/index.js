@@ -1,10 +1,20 @@
-import { CREATE_TITLE } from '../actions'
+import { GET_ALL_DECK, CREATE_NEW_DECK } from '../actions'
 
-function title(state = '', action) {
+function decks(state = {}, action) {
   switch (action.type) {
-    case CREATE_TITLE:
+    case GET_ALL_DECK:
       return {
-        state: action.title
+        ...state,
+        ...action.deckList
+      }
+
+    case CREATE_NEW_DECK:
+      return {
+        ...state,
+        [action.deck]: {
+          title: action.deck,
+          questions: []
+        }
       }
 
     default:
@@ -12,4 +22,4 @@ function title(state = '', action) {
   }
 }
 
-export default title
+export default decks

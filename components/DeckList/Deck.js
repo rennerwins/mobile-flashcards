@@ -1,14 +1,15 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native'
 import { white, gray } from '../../utils/colors'
 
-function Deck(props, { title, cards }) {
-  console.log(props)
+function Deck({ title, questions, press }) {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.cards}>{cards} cards</Text>
-    </View>
+    <TouchableNativeFeedback onPress={press} background={TouchableNativeFeedback.SelectableBackground()}>
+      <View style={styles.container}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.cards}>{questions.length} cards</Text>
+      </View>
+    </TouchableNativeFeedback>
   )
 }
 
@@ -28,8 +29,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 26,
-    textAlign: 'center',
-    backgroundColor: white
+    textAlign: 'center'
   },
   cards: {
     fontSize: 18,

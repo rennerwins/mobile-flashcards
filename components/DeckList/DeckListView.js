@@ -1,28 +1,45 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
+import { getAllDeck } from '../../actions'
 import Deck from './Deck'
 import { lightGray } from '../../utils/colors'
-import { getDecks } from '../../utils/api'
+import { getDecks, clearAll } from '../../utils/api'
 
 class DeckListView extends Component {
-  state = {
-    deckLists: []
+  componentDidMount() {
+    this.fetchDeckList()
   }
 
-  componentDidMount() {
+  fetchDeckList = () => {
     getDecks().then(res => {
-      const deckLists = JSON.parse(res)
-      this.setState(prevState => ({ deckLists: [...prevState.deckLists, deckLists] }))
+      const deckList = JSON.parse(res)
+      const deckArray = []
+      if (deckList !== null) {
+        this.props.getAllDeck(deckList)
+      }
     })
   }
 
+  selectDeck = (title) => {
+    console.log('title', title)
+  }
+ 
+  // renderItem = ({ item }) => console.log(item)
+  renderItem = ({ item }) => <Deck {...item} press={() => this.selectDeck(item.title)} />
+
   render() {
+    const { decks } = this.props
+
     return (
       <View style={styles.container}>
-        <FlatList
-          data={this.state.deckLists}
-          renderItem={({ item }, index) => <Deck key={index} {...item} />}
-        />
+        {decks.length > 0 ? (
+          <FlatList data={decks} renderItem={this.renderItem} keyExtractor={item => item.title} />
+        ) : (
+          <View style={{ alignItems: 'center' }}>
+            <Text style={{ fontSize: 26 }}>Your deck is empty.</Text>
+          </View>
+        )}
       </View>
     )
   }
@@ -36,4 +53,10 @@ const styles = StyleSheet.create({
   }
 })
 
-export default DeckListView
+function mapStateToProps(decks) {
+  return {
+    decks: Object.values(decks).map(deck => deck)
+  }
+}
+
+export default connect(mapStateToProps, { getAllDeck })(DeckListView)

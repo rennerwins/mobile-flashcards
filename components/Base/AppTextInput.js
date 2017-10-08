@@ -2,7 +2,7 @@ import React from 'react'
 import { TextInput, StyleSheet } from 'react-native'
 import { blue } from '../../utils/colors'
 
-function AppTextInput({ placeholder, change }) {
+function AppTextInput({ placeholder, change, value }) {
   return (
     <TextInput
       underlineColorAndroid={blue}
@@ -11,6 +11,7 @@ function AppTextInput({ placeholder, change }) {
       borderColor={blue}
       onChangeText={change}
       style={styles.textInput}
+      value={value}
     />
   )
 }

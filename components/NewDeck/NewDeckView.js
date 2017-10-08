@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableNativeFeedback, KeyboardAvoidingView } from 'react-native'
+import { NavigationActions } from 'react-navigation'
+import { connect } from 'react-redux'
+import { createNewDeck } from '../../actions'
 import AppTextInput from '../Base/AppTextInput'
 import { blue, white } from '../../utils/colors'
 import { saveDeckTitle } from '../../utils/api'
@@ -11,7 +14,20 @@ class NewDeckView extends Component {
 
   handleSubmit = () => {
     const { title } = this.state
+
+    this.props.createNewDeck(title)
     saveDeckTitle(title)
+
+    this.setState({ title: '' })
+    this.toHome()
+  }
+
+  toHome = () => {
+    this.props.navigation.dispatch(
+      NavigationActions.back({
+        key: 'NewDeckView'
+      })
+    )
   }
 
   render() {
@@ -20,11 +36,7 @@ class NewDeckView extends Component {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Text style={styles.header}>What is the title of your new deck?</Text>
-        <AppTextInput
-          placeholder="Deck Title"
-          change={title => this.setState({ title })}
-          value={title}
-        />
+        <AppTextInput placeholder="Deck Title" change={title => this.setState({ title })} value={title} />
 
         <View style={{ alignItems: 'center', marginTop: 20 }}>
           <TouchableNativeFeedback
@@ -65,4 +77,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default NewDeckView
+export default connect(null, { createNewDeck })(NewDeckView)

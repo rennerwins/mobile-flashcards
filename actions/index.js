@@ -1,17 +1,16 @@
-// export const ADD_DECK = 'ADD_DECK'
+export const GET_ALL_DECK = 'GET_ALL_DECK'
+export const CREATE_NEW_DECK = 'CREATE_NEW_DECK'
 
-// export function addNewDeck (deck) {
-//   return {
-//     type: ADD_DECK,
-//     deck
-//   }
-// }
-
-export const CREATE_TITLE = 'CREATE_TITLE'
-
-export function createTitle(title) {
+export function getAllDeck(deckList) {
   return {
-    type: CREATE_TITLE,
-    title
+    type: GET_ALL_DECK,
+    deckList
+  }
+}
+
+export function createNewDeck(deck) {
+  return {
+    type: CREATE_NEW_DECK,
+    deck
   }
 }
