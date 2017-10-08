@@ -3,7 +3,7 @@ import { View, Text, FlatList, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { getAllDeck } from '../../actions'
 import Deck from './Deck'
-import { lightGray } from '../../utils/colors'
+import { lightGray, orange } from '../../utils/colors'
 import { getDecks, clearAll } from '../../utils/api'
 
 class DeckListView extends Component {
@@ -21,10 +21,10 @@ class DeckListView extends Component {
     })
   }
 
-  selectDeck = (title) => {
-    console.log('title', title)
+  selectDeck = title => {
+    this.props.navigation.navigate('IndividualDeckView', { id: title })
   }
-  
+
   renderItem = ({ item }) => <Deck {...item} press={() => this.selectDeck(item.title)} />
 
   render() {

@@ -1,7 +1,8 @@
-import { TabNavigator } from 'react-navigation'
+import { TabNavigator, StackNavigator } from 'react-navigation'
 import { blue, white, lightBlue } from '../../utils/colors'
 import DeckListView from '../DeckList/DeckListView'
 import NewDeckView from '../NewDeck/NewDeckView'
+import IndividualDeckView from '../IndividualDeck/IndividualDeckView'
 
 const Tabs = TabNavigator(
   {
@@ -39,4 +40,23 @@ const Tabs = TabNavigator(
   }
 )
 
-export default Tabs
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: Tabs
+  },
+  IndividualDeckView: {
+    screen: IndividualDeckView,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue
+      },
+      headerTitle: `${navigation.state.params.id}`,
+      headerTitleStyle: {
+        width: 500
+      }
+    })
+  }
+})
+
+export default MainNavigator

@@ -9,7 +9,14 @@ export function getDecks() {
 }
 
 // getDeck: take in a single id argument and return the deck associated with that id.
-export function getDeck(id) {}
+export function getDeck(id) {
+  console.log('get a deck', id)
+  return AsyncStorage.getItem(MOBILE_FLASHCARDS_KEY).then(res => {
+    const deckList = JSON.parse(res)
+    const deck = deckList[id]
+    return deck
+  }, err => console.log('error', err))
+}
 
 // saveDeckTitle: take in a single title argument and add it to the decks.
 export function saveDeckTitle(title) {

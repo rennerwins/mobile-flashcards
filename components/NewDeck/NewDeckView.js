@@ -4,6 +4,7 @@ import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import { createNewDeck } from '../../actions'
 import AppTextInput from '../Base/AppTextInput'
+import AppAndroidButton from '../Base/AppAndroidButton'
 import { blue, white } from '../../utils/colors'
 import { saveDeckTitle } from '../../utils/api'
 
@@ -36,17 +37,20 @@ class NewDeckView extends Component {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Text style={styles.header}>What is the title of your new deck?</Text>
-        <AppTextInput placeholder="Deck Title" change={title => this.setState({ title })} value={title} />
+        <AppTextInput
+          placeholder="Deck Title"
+          change={title => this.setState({ title })}
+          value={title}
+        />
 
         <View style={{ alignItems: 'center', marginTop: 20 }}>
-          <TouchableNativeFeedback
-            onPress={this.handleSubmit}
-            background={TouchableNativeFeedback.SelectableBackground()}
-          >
-            <View style={styles.button}>
-              <Text style={styles.buttonText}>SUBMIT</Text>
-            </View>
-          </TouchableNativeFeedback>
+          <AppAndroidButton
+            press={this.handleSubmit}
+            backgroundColor={blue}
+            borderColor={blue}
+            color={white}
+            title="Submit"
+          />
         </View>
       </KeyboardAvoidingView>
     )
@@ -63,17 +67,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     marginBottom: 10
-  },
-  button: {
-    width: 160,
-    backgroundColor: blue,
-    borderRadius: 2
-  },
-  buttonText: {
-    color: white,
-    textAlign: 'center',
-    fontSize: 16,
-    paddingVertical: 10
   }
 })
 
