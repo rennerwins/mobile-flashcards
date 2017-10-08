@@ -16,15 +16,15 @@ function AppAndroidButton({ press, backgroundColor, color, title, borderColor })
 
 const styles = StyleSheet.create({
   button: {
-    width: 160,
+    width: 180,
     borderRadius: 2,
     borderWidth: 1,
     marginBottom: 20
   },
   buttonText: {
     textAlign: 'center',
-    fontSize: 16,
-    paddingVertical: 10
+    fontSize: 18,
+    paddingVertical: 12
   }
 })
 
