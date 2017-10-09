@@ -39,6 +39,7 @@ class IndividualDeckView extends Component {
             press={() => this.addNewCard(deck.title)}
             backgroundColor={white}
             borderColor={blue}
+            color={blue}
             title="Add Card"
           />
           <AppAndroidButton
