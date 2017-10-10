@@ -1,12 +1,28 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import AppAndroidButton from '../Base/AppAndroidButton'
-import { blue, white, red, green } from '../../utils/colors'
+import PlayingView from './PlayingView'
+import ResultView from './ResultView'
+
+// TODO: And 'Show Answer' function
 
 class QuizView extends Component {
   state = {
-    current: 1,
-    correct: 0
+    current: 0,
+    correct: 0,
+    questionLength: 0,
+    percent: 0
+  }
+
+  componentDidMount() {
+    const { questions } = this.props.navigation.state.params.deck
+    this.setState(() => ({ questionLength: questions.length }))
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { questionLength, correct } = this.state
+    if (prevState.current + 1 === questionLength) {
+      this.percentageCalculation(correct, questionLength)
+    }
   }
 
   correctAnswered = () => {
@@ -22,53 +38,27 @@ class QuizView extends Component {
     }))
   }
 
+  percentageCalculation = (correct, questionLength) => {
+    let percent = Math.floor(correct / questionLength * 100)
+    this.setState(() => ({ percent }))
+  }
+
   render() {
     const { deck } = this.props.navigation.state.params
-    const { current, correct } = this.state
+    const { current, correct, percent } = this.state
 
     return (
       <View style={styles.container}>
-        <Text style={{ fontSize: 18 }}>
-          {current} / {deck.questions.length}
-        </Text>
-
-        <View style={styles.quizWrapper}>
-          <Text style={styles.questionAndAnswer}>{deck.questions[current - 1].question}</Text>
-          <Text style={[styles.linkText, { color: red }]}>Answer</Text>
-          <Text>{correct}</Text>
-        </View>
-
-        <View style={styles.answerWrapper}>
-          {current !== deck.questions.length ? (
-            <View>
-              <AppAndroidButton
-                press={this.correctAnswered}
-                backgroundColor={green}
-                borderColor={green}
-                color={white}
-                title="Correct"
-              />
-
-              <AppAndroidButton
-                press={this.incorrectAnswered}
-                backgroundColor={red}
-                borderColor={red}
-                color={white}
-                title="Incorrect"
-              />
-            </View>
-          ) : (
-            <View>
-              <AppAndroidButton
-                press={this.incorrectAnswered}
-                backgroundColor={red}
-                borderColor={red}
-                color={white}
-                title="Show Result"
-              />
-            </View>
-          )}
-        </View>
+        {current + 1 <= deck.questions.length ? (
+          <PlayingView
+            questions={deck.questions}
+            onCorrectAnswered={this.correctAnswered}
+            onIncorrectAnswered={this.incorrectAnswered}
+            {...this.state}
+          />
+        ) : (
+          <ResultView percent={percent} />
+        )}
       </View>
     )
   }
@@ -79,25 +69,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     paddingTop: 5
-  },
-  quizWrapper: {
-    flex: 0.7,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  questionAndAnswer: {
-    fontSize: 34,
-    marginBottom: 10,
-    textAlign: 'center'
-  },
-  linkText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    width: 200
-  },
-  answerWrapper: {
-    alignItems: 'center'
   }
 })
 
