@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { fetchAllDeck } from '../../actions'
 import Deck from './Deck'
 import { lightGray, orange } from '../../utils/colors'
-import { getDecks, clearAll } from '../../utils/api'
+import { clearAll } from '../../utils/api'
 
 class DeckListView extends Component {
   componentDidMount() {

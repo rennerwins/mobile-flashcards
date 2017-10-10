@@ -2,14 +2,13 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import AppAndroidButton from '../Base/AppAndroidButton'
-import { getDeck } from '../../utils/api'
 import { orange, white, gray, blue } from '../../utils/colors'
 
 class IndividualDeckView extends Component {
   addNewCard = title => {
     this.props.navigation.navigate('NewCardView', { title })
   }
-  
+
   startQuiz = deck => {
     this.props.navigation.navigate('QuizView', { deck })
   }

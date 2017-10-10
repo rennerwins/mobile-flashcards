@@ -13,7 +13,8 @@ import { createNewTitle, createDeck } from '../../actions'
 import AppTextInput from '../Base/AppTextInput'
 import AppAndroidButton from '../Base/AppAndroidButton'
 import { blue, white } from '../../utils/colors'
-import { saveDeckTitle } from '../../utils/api'
+
+// TODO: Validate duplicate title
 
 class NewDeckView extends Component {
   state = {
