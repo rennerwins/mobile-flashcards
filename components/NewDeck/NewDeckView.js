@@ -24,8 +24,6 @@ class NewDeckView extends Component {
     const { title } = this.state
 
     this.props.createDeck(title)
-    // this.props.createNewTitle(title)
-    // saveDeckTitle(title)
     this.setState({ title: '' })
     this.toDeck(title)
     Keyboard.dismiss()

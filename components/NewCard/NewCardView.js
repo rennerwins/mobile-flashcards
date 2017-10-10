@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, KeyboardAvoidingView } from 'react-native'
+import { View, Text, StyleSheet, KeyboardAvoidingView, Keyboard } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import { addCardToDeck } from '../../utils/api'
 import { addNewCard } from '../../actions'
@@ -24,12 +25,22 @@ class NewCardView extends Component {
   handleSubmit = () => {
     const { title } = this.props.navigation.state.params
     const card = this.state
-    
+
     this.props.addNewCard(title, card)
     this.setState(() => ({
       question: '',
       answer: ''
     }))
+    this.goBack()
+    Keyboard.dismiss()
+  }
+
+  goBack = () => {
+    this.props.navigation.dispatch(
+      NavigationActions.back({
+        key: ''
+      })
+    )
   }
 
   render() {

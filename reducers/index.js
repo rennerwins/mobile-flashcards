@@ -9,10 +9,9 @@ function decks(state = {}, action) {
       }
 
     case CREATE_NEW_TITLE:
-      console.log('action title', action.title)
       return {
         ...state,
-        [action.titl]: {
+        [action.title]: {
           title: action.title,
           questions: []
         }

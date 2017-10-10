@@ -16,28 +16,26 @@ class IndividualDeckView extends Component {
 
     return (
       <View style={styles.container}>
-        <View>
-          <View style={styles.deckDetail}>
-            <Text style={styles.title}>{decks[id].title}</Text>
-            <Text style={styles.cards}>{decks[id].questions.length} cards</Text>
-          </View>
+        <View style={styles.deckDetail}>
+          <Text style={styles.title}>{decks[id].title}</Text>
+          <Text style={styles.cards}>{decks[id].questions.length} cards</Text>
+        </View>
 
-          <View style={styles.buttonAction}>
-            <AppAndroidButton
-              press={() => this.addNewCard(decks[id].title)}
-              backgroundColor={white}
-              borderColor={blue}
-              color={blue}
-              title="Add Card"
-            />
-            <AppAndroidButton
-              press={this.handleSubmit}
-              backgroundColor={blue}
-              borderColor={blue}
-              color={white}
-              title="Start Quiz"
-            />
-          </View>
+        <View style={styles.buttonAction}>
+          <AppAndroidButton
+            press={() => this.addNewCard(decks[id].title)}
+            backgroundColor={white}
+            borderColor={blue}
+            color={blue}
+            title="Add Card"
+          />
+          <AppAndroidButton
+            press={this.handleSubmit}
+            backgroundColor={blue}
+            borderColor={blue}
+            color={white}
+            title="Start Quiz"
+          />
         </View>
       </View>
     )
