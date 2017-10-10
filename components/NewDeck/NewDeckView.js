@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableNativeFeedback, KeyboardAvoidingView } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableNativeFeedback,
+  KeyboardAvoidingView,
+  Keyboard
+} from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
-import { createNewDeck } from '../../actions'
+import { createNewTitle, createDeck } from '../../actions'
 import AppTextInput from '../Base/AppTextInput'
 import AppAndroidButton from '../Base/AppAndroidButton'
 import { blue, white } from '../../utils/colors'
@@ -16,17 +23,19 @@ class NewDeckView extends Component {
   handleSubmit = () => {
     const { title } = this.state
 
-    this.props.createNewDeck(title)
-    saveDeckTitle(title)
-
+    this.props.createDeck(title)
+    // this.props.createNewTitle(title)
+    // saveDeckTitle(title)
     this.setState({ title: '' })
-    this.toHome()
+    this.toDeck(title)
+    Keyboard.dismiss()
   }
 
-  toHome = () => {
+  toDeck = title => {
     this.props.navigation.dispatch(
-      NavigationActions.back({
-        key: 'NewDeckView'
+      NavigationActions.navigate({
+        routeName: 'IndividualDeckView',
+        params: { id: title }
       })
     )
   }
@@ -49,7 +58,7 @@ class NewDeckView extends Component {
             backgroundColor={blue}
             borderColor={blue}
             color={white}
-            title="Submit"
+            title="Create Deck"
           />
         </View>
       </KeyboardAvoidingView>
@@ -70,4 +79,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default connect(null, { createNewDeck })(NewDeckView)
+export default connect(null, { createNewTitle, createDeck })(NewDeckView)

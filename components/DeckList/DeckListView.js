@@ -1,24 +1,15 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { getAllDeck } from '../../actions'
+import { fetchAllDeck } from '../../actions'
 import Deck from './Deck'
 import { lightGray, orange } from '../../utils/colors'
 import { getDecks, clearAll } from '../../utils/api'
 
 class DeckListView extends Component {
   componentDidMount() {
-    this.fetchDeckList()
-  }
-
-  fetchDeckList = () => {
-    getDecks().then(res => {
-      const deckList = JSON.parse(res)
-      const deckArray = []
-      if (deckList !== null) {
-        this.props.getAllDeck(deckList)
-      }
-    })
+    // clearAll()
+    this.props.fetchAllDeck()
   }
 
   selectDeck = title => {
@@ -52,10 +43,10 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps(decks) {
+const mapStateToProps = decks => {
   return {
     decks: Object.values(decks).map(deck => deck)
   }
 }
 
-export default connect(mapStateToProps, { getAllDeck })(DeckListView)
+export default connect(mapStateToProps, { fetchAllDeck })(DeckListView)
