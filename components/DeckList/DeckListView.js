@@ -8,6 +8,7 @@ import { getDecks, clearAll } from '../../utils/api'
 
 class DeckListView extends Component {
   componentDidMount() {
+    // clearAll()
     this.props.fetchAllDeck()
   }
 
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps(decks) {
+const mapStateToProps = decks => {
   return {
     decks: Object.values(decks).map(deck => deck)
   }
