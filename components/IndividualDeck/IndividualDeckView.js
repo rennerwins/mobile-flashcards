@@ -9,6 +9,10 @@ class IndividualDeckView extends Component {
   addNewCard = title => {
     this.props.navigation.navigate('NewCardView', { title })
   }
+  
+  startQuiz = deck => {
+    this.props.navigation.navigate('QuizView', { deck })
+  }
 
   render() {
     const { id } = this.props.navigation.state.params
@@ -30,7 +34,7 @@ class IndividualDeckView extends Component {
             title="Add Card"
           />
           <AppAndroidButton
-            press={this.handleSubmit}
+            press={() => this.startQuiz(decks[id])}
             backgroundColor={blue}
             borderColor={blue}
             color={white}

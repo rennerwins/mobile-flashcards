@@ -4,6 +4,7 @@ import DeckListView from '../DeckList/DeckListView'
 import NewDeckView from '../NewDeck/NewDeckView'
 import IndividualDeckView from '../IndividualDeck/IndividualDeckView'
 import NewCardView from '../NewCard/NewCardView'
+import QuizView from '../Quiz/QuizView'
 
 const Tabs = TabNavigator(
   {
@@ -48,29 +49,34 @@ const MainNavigator = StackNavigator({
   IndividualDeckView: {
     screen: IndividualDeckView,
     navigationOptions: ({ navigation }) => ({
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: blue
-      },
-      headerTitle: `${navigation.state.params.id}`,
-      headerTitleStyle: {
-        width: 500
-      }
+      ...headerStackStyle,
+      headerTitle: `${navigation.state.params.id}`
     })
   },
   NewCardView: {
     screen: NewCardView,
     navigationOptions: ({ navigation }) => ({
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: blue
-      },
+      ...headerStackStyle,
       headerTitle: 'Add Card',
-      headerTitleStyle: {
-        width: 500
-      }
+    })
+  },
+  QuizView: {
+    screen: QuizView,
+    navigationOptions: ({ navigation }) => ({
+      ...headerStackStyle,
+      headerTitle: 'Quiz'
     })
   }
 })
+
+const headerStackStyle = {
+  headerTintColor: white,
+  headerStyle: {
+    backgroundColor: blue
+  },
+  headerTitleStyle: {
+    width: 500
+  }
+}
 
 export default MainNavigator
