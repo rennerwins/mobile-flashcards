@@ -1,9 +1,17 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import AppAndroidButton from '../Base/AppAndroidButton'
 import { blue, white, red, green } from '../../utils/colors'
 
-function Playing({ current, correct, questions, onCorrectAnswered, onIncorrectAnswered }) {
+function Playing({
+  current,
+  correct,
+  questions,
+  showAnswer,
+  onCorrectAnswered,
+  onIncorrectAnswered,
+  onShowAnswer
+}) {
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 18 }}>
@@ -11,8 +19,14 @@ function Playing({ current, correct, questions, onCorrectAnswered, onIncorrectAn
       </Text>
 
       <View style={styles.quizWrapper}>
-        <Text style={styles.questionAndAnswer}>{questions[current].question}</Text>
-        <Text style={[styles.linkText, { color: red }]}>Answer</Text>
+        <Text style={styles.questionAndAnswer}>
+          {showAnswer ? questions[current].answer : questions[current].question}
+        </Text>
+        <TouchableOpacity onPress={onShowAnswer}>
+          <Text style={[styles.linkText, { color: red }]}>
+            {showAnswer ? 'Question' : 'Answer'}
+          </Text>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.answerWrapper}>
@@ -46,15 +60,16 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   questionAndAnswer: {
-    fontSize: 34,
-    marginBottom: 10,
+    fontSize: 40,
+    marginBottom: 20,
     textAlign: 'center'
   },
   linkText: {
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
-    width: 200
+    width: 200,
+    paddingVertical: 10
   },
   answerWrapper: {
     alignItems: 'center'

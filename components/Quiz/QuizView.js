@@ -3,14 +3,13 @@ import { View, Text, StyleSheet } from 'react-native'
 import PlayingView from './PlayingView'
 import ResultView from './ResultView'
 
-// TODO: And 'Show Answer' function
-
 class QuizView extends Component {
   state = {
     current: 0,
     correct: 0,
     questionLength: 0,
-    percent: 0
+    percent: 0,
+    showAnswer: false
   }
 
   componentDidMount() {
@@ -19,23 +18,31 @@ class QuizView extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { questionLength, correct } = this.state
-    if (prevState.current + 1 === questionLength) {
-      this.percentageCalculation(correct, questionLength)
+    const { questionLength, correct, current, showAnswer } = this.state
+    if (current !== 0 && showAnswer === prevState.showAnswer) {
+      if (prevState.current + 1 === questionLength) {
+        this.percentageCalculation(correct, questionLength)
+      }
     }
   }
 
   correctAnswered = () => {
     this.setState(state => ({
       current: state.current + 1,
-      correct: state.correct + 1
+      correct: state.correct + 1,
+      showAnswer: false
     }))
   }
 
   incorrectAnswered = () => {
     this.setState(state => ({
-      current: state.current + 1
+      current: state.current + 1,
+      showAnswer: false
     }))
+  }
+
+  onShowAnswer = () => {
+    this.setState(state => ({ showAnswer: !state.showAnswer }))
   }
 
   percentageCalculation = (correct, questionLength) => {
@@ -54,6 +61,7 @@ class QuizView extends Component {
             questions={deck.questions}
             onCorrectAnswered={this.correctAnswered}
             onIncorrectAnswered={this.incorrectAnswered}
+            onShowAnswer={this.onShowAnswer}
             {...this.state}
           />
         ) : (
