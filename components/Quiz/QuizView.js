@@ -50,13 +50,17 @@ class QuizView extends Component {
     this.setState(() => ({ percent }))
   }
 
+  onQuizRestart = () => {}
+
+  goBackToDeck = () => {}
+
   render() {
     const { deck } = this.props.navigation.state.params
-    const { current, correct, percent } = this.state
+    const { current, correct, percent, questionLength } = this.state
 
     return (
       <View style={styles.container}>
-        {current + 1 <= deck.questions.length ? (
+        {current + 1 <= questionLength ? (
           <PlayingView
             questions={deck.questions}
             onCorrectAnswered={this.correctAnswered}
@@ -65,7 +69,11 @@ class QuizView extends Component {
             {...this.state}
           />
         ) : (
-          <ResultView percent={percent} />
+          <ResultView
+            {...this.state}
+            onQuizRestart={this.onQuizRestart}
+            goBacktoDeck={this.goBackToDeck}
+          />
         )}
       </View>
     )

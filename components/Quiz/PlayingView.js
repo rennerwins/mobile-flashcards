@@ -13,7 +13,7 @@ function Playing({
   onShowAnswer
 }) {
   return (
-    <View style={styles.container}>
+    <View style={{ flex: 1 }}>
       <Text style={{ fontSize: 18 }}>
         {current + 1} / {questions.length}
       </Text>
@@ -29,7 +29,7 @@ function Playing({
         </TouchableOpacity>
       </View>
 
-      <View style={styles.answerWrapper}>
+      <View style={{ alignItems: 'center' }}>
         <AppAndroidButton
           press={onCorrectAnswered}
           backgroundColor={green}
@@ -51,9 +51,6 @@ function Playing({
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
   quizWrapper: {
     flex: 0.7,
     justifyContent: 'center',
@@ -70,9 +67,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: 200,
     paddingVertical: 10
-  },
-  answerWrapper: {
-    alignItems: 'center'
   }
 })
 
