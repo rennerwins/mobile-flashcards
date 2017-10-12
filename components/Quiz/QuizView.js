@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 import PlayingView from './PlayingView'
 import ResultView from './ResultView'
 
@@ -50,9 +51,18 @@ class QuizView extends Component {
     this.setState(() => ({ percent }))
   }
 
-  onQuizRestart = () => {}
+  onQuizRestart = () => {
+    this.setState(() => ({
+      current: 0,
+      correct: 0,
+      percent: 0,
+      showAnswer: false
+    }))
+  }
 
-  goBackToDeck = () => {}
+  goBackToDeck = () => {
+    this.props.navigation.goBack()
+  }
 
   render() {
     const { deck } = this.props.navigation.state.params
