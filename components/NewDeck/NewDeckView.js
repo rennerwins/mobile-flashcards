@@ -12,26 +12,29 @@ import { connect } from 'react-redux'
 import { createNewTitle, createDeck } from '../../actions'
 import AppTextInput from '../Base/AppTextInput'
 import AppAndroidButton from '../Base/AppAndroidButton'
-import { blue, white } from '../../utils/colors'
-
-// TODO: Validate duplicate title
+import { blue, white, red } from '../../utils/colors'
 
 class NewDeckView extends Component {
   state = {
     title: '',
-    error: false
+    error: false,
+    duplicate: false
   }
 
   handleSubmit = () => {
     const { title } = this.state
+    const { decks } = this.props
 
     if (title !== '') {
-      this.props.createDeck(title)
-      this.setState(() => ({ title: '', error: false }))
-      this.toDeck(title)
-      Keyboard.dismiss()
+      if (decks[title] === undefined) {
+        this.props.createDeck(title)
+        this.setState(() => ({ title: '', error: false, duplicate: false }))
+        this.toDeck(title)
+        Keyboard.dismiss()
+      } else {
+        this.setState(() => ({ duplicate: true }))
+      }
     } else {
-      console.log('title is empty')
       this.setState(() => ({ error: true }))
     }
   }
@@ -39,7 +42,8 @@ class NewDeckView extends Component {
   handleTitle = e => {
     this.setState(() => ({
       title: e,
-      error: false
+      error: false,
+      duplicate: false
     }))
   }
 
@@ -53,17 +57,21 @@ class NewDeckView extends Component {
   }
 
   render() {
-    const { title, error } = this.state
+    const { title, error, duplicate } = this.state
 
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Text style={styles.header}>What is the title of your new deck?</Text>
         <AppTextInput
-          placeholder={error ? 'Please fill in the deck title' : 'Deck Title'}
+          placeholder="Deck Title"
           change={this.handleTitle}
           value={title}
-          error={error}
+          error={error || duplicate}
         />
+        <Text style={styles.errorText}>
+          {error && 'Please fill in the deck title'}
+          {duplicate && 'Title already exists'}
+        </Text>
 
         <View style={{ alignItems: 'center', marginTop: 20 }}>
           <AppAndroidButton
@@ -89,7 +97,13 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     marginBottom: 10
+  },
+  errorText: {
+    color: red,
+    paddingLeft: 4
   }
 })
 
-export default connect(null, { createNewTitle, createDeck })(NewDeckView)
+const mapStateToProps = decks => ({ decks })
+
+export default connect(mapStateToProps, { createNewTitle, createDeck })(NewDeckView)

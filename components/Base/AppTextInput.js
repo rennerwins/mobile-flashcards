@@ -7,7 +7,6 @@ function AppTextInput({ placeholder, change, value, error }) {
     <TextInput
       underlineColorAndroid={error ? red : blue}
       placeholder={placeholder}
-      placeholderTextColor={error ? red : gray}
       selectionColor={blue}
       borderColor={blue}
       onChangeText={change}
