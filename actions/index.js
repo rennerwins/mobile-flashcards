@@ -25,7 +25,7 @@ export const addNewCard = (title, card) => dispatch => {
   dispatch(createNewCard(title, card))
 }
 
-export const createDeck = (title) => dispatch => {
+export const createDeck = title => dispatch => {
   dispatch(createNewTitle(title))
   saveDeckTitle(title)
 }
