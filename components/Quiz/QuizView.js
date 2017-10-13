@@ -19,11 +19,9 @@ class QuizView extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { questionLength, correct, current, showAnswer } = this.state
-    if (current !== 0 && showAnswer === prevState.showAnswer) {
-      if (prevState.current + 1 === questionLength) {
-        this.percentageCalculation(correct, questionLength)
-      }
+    const { questionLength, correct, current } = this.state
+    if (current !== prevState.current) {
+      this.percentageCalculation(correct, questionLength)
     }
   }
 

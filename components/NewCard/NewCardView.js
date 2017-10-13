@@ -43,10 +43,8 @@ class NewCardView extends Component {
       this.goBack()
       Keyboard.dismiss()
     } else if (question === '') {
-      console.log('question error')
       this.setState(() => ({ questionError: true }))
     } else if (answer === '') {
-      console.log('answer error')
       this.setState(() => ({ answerError: true }))
     }
   }
