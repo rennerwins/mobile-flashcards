@@ -5,10 +5,12 @@ import { fetchAllDeck } from '../../actions'
 import Deck from './Deck'
 import { lightGray, orange } from '../../utils/colors'
 import { clearAll } from '../../utils/api'
+import { setLocalNotification } from '../../utils/helpers'
 
 class DeckListView extends Component {
   componentDidMount() {
     // clearAll()
+    setLocalNotification()
     this.props.fetchAllDeck()
   }
 

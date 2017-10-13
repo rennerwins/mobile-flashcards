@@ -3,6 +3,11 @@ import { View, Text, StyleSheet } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import PlayingView from './PlayingView'
 import ResultView from './ResultView'
+import {
+  percentageCalculation,
+  clearLocalNotification,
+  setLocalNotification
+} from '../../utils/helpers'
 
 class QuizView extends Component {
   state = {
@@ -21,7 +26,9 @@ class QuizView extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { questionLength, correct, current } = this.state
     if (current !== prevState.current) {
-      this.percentageCalculation(correct, questionLength)
+      let percent = percentageCalculation(correct, questionLength)
+      this.setState(() => ({ percent }))
+      clearLocalNotification().then(setLocalNotification)
     }
   }
 
@@ -42,11 +49,6 @@ class QuizView extends Component {
 
   onShowAnswer = () => {
     this.setState(state => ({ showAnswer: !state.showAnswer }))
-  }
-
-  percentageCalculation = (correct, questionLength) => {
-    let percent = Math.floor(correct / questionLength * 100)
-    this.setState(() => ({ percent }))
   }
 
   onQuizRestart = () => {

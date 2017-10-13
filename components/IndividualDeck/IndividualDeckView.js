@@ -2,20 +2,31 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import AppAndroidButton from '../Base/AppAndroidButton'
-import { orange, white, gray, blue } from '../../utils/colors'
+import { orange, white, gray, blue, red } from '../../utils/colors'
 
 class IndividualDeckView extends Component {
+  state = {
+    error: false
+  }
+
   addNewCard = title => {
+    this.setState(() => ({ error: false }))
     this.props.navigation.navigate('NewCardView', { title })
   }
 
   startQuiz = deck => {
-    this.props.navigation.navigate('QuizView', { deck })
+    if (deck.questions.length === 0) {
+      this.setState(() => ({ error: true }))
+    } else {
+      this.setState(() => ({ error: false }))
+      this.props.navigation.navigate('QuizView', { deck })
+    }
   }
 
   render() {
     const { id } = this.props.navigation.state.params
     const { decks } = this.props
+    const { error } = this.state
 
     return (
       <View style={styles.container}>
@@ -39,6 +50,7 @@ class IndividualDeckView extends Component {
             color={white}
             title="Start Quiz"
           />
+          <Text style={{ color: red }}>{error && 'Please add at least 1 card.'}</Text>
         </View>
       </View>
     )
