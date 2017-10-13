@@ -16,7 +16,7 @@ const Tabs = TabNavigator(
       navigationOptions: {
         tabBarLabel: 'Decks',
         tabBarIcon: ({ blue }) => (
-          <MaterialCommunityIcons name="folder-multiple" size={30} color={blue} />
+          <MaterialCommunityIcons name="folder-multiple-outline" size={30} color={blue} />
         )
       }
     },
@@ -24,7 +24,9 @@ const Tabs = TabNavigator(
       screen: NewDeckView,
       navigationOptions: {
         tabBarLabel: 'New Deck',
-        tabBarIcon: ({ blue }) => <MaterialCommunityIcons name="cards" size={30} color={blue} />
+        tabBarIcon: ({ blue }) => (
+          <MaterialCommunityIcons name="cards-outline" size={30} color={blue} />
+        )
       }
     }
   },

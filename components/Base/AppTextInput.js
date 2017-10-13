@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextInput, StyleSheet } from 'react-native'
+import { TextInput, StyleSheet, Platform } from 'react-native'
 import { blue, red, gray } from '../../utils/colors'
 
 function AppTextInput({ placeholder, change, value, error }) {
@@ -10,14 +10,22 @@ function AppTextInput({ placeholder, change, value, error }) {
       selectionColor={blue}
       borderColor={blue}
       onChangeText={change}
-      style={styles.textInput}
+      style={Platform.OS === 'ios' ? styles.iosInput : styles.androidInput}
       value={value}
     />
   )
 }
 
 const styles = StyleSheet.create({
-  textInput: {
+  iosInput: {
+    marginTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 4,
+    fontSize: 18,
+    borderBottomColor: gray,
+    borderBottomWidth: 1
+  },
+  androidInput: {
     marginTop: 10,
     paddingBottom: 10,
     paddingLeft: 4,

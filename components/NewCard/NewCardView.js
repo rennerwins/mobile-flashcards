@@ -62,7 +62,7 @@ class NewCardView extends Component {
 
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
-        <View style={{ marginBottom: 40 }}>
+        <View style={{ marginBottom: 20 }}>
           <AppTextInput
             placeholder="What is the question?"
             change={this.handleQuestion}
@@ -72,7 +72,7 @@ class NewCardView extends Component {
           <Text style={styles.errorText}>{questionError && 'Please fill in the question'}</Text>
         </View>
 
-        <View style={{ marginBottom: 40 }}>
+        <View style={{ marginBottom: 20 }}>
           <AppTextInput
             placeholder="What is the answer?"
             change={this.handleAnswer}
@@ -98,8 +98,9 @@ class NewCardView extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingHorizontal: 20,
-    paddingVertical: 50
+    paddingVertical: 40
   },
   errorText: {
     color: red,

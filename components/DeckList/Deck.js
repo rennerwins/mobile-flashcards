@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native'
 import { white, gray } from '../../utils/colors'
 
 function Deck({ title, questions, press }) {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     height: 200,
     paddingHorizontal: 20,
     paddingVertical: 30,
-    borderRadius: 2,
+    borderRadius: Platform.OS === 'ios' ? 16 : 2,
     elevation: 4,
     justifyContent: 'center',
     alignItems: 'center',
