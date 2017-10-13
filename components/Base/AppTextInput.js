@@ -1,12 +1,13 @@
 import React from 'react'
 import { TextInput, StyleSheet } from 'react-native'
-import { blue } from '../../utils/colors'
+import { blue, red, gray } from '../../utils/colors'
 
-function AppTextInput({ placeholder, change, value }) {
+function AppTextInput({ placeholder, change, value, error }) {
   return (
     <TextInput
-      underlineColorAndroid={blue}
+      underlineColorAndroid={error ? red : blue}
       placeholder={placeholder}
+      placeholderTextColor={error ? red : gray}
       selectionColor={blue}
       borderColor={blue}
       onChangeText={change}

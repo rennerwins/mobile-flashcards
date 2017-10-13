@@ -18,16 +18,29 @@ import { blue, white } from '../../utils/colors'
 
 class NewDeckView extends Component {
   state = {
-    title: ''
+    title: '',
+    error: false
   }
 
   handleSubmit = () => {
     const { title } = this.state
 
-    this.props.createDeck(title)
-    this.setState({ title: '' })
-    this.toDeck(title)
-    Keyboard.dismiss()
+    if (title !== '') {
+      this.props.createDeck(title)
+      this.setState(() => ({ title: '', error: false }))
+      this.toDeck(title)
+      Keyboard.dismiss()
+    } else {
+      console.log('title is empty')
+      this.setState(() => ({ error: true }))
+    }
+  }
+
+  handleTitle = e => {
+    this.setState(() => ({
+      title: e,
+      error: false
+    }))
   }
 
   toDeck = title => {
@@ -40,15 +53,16 @@ class NewDeckView extends Component {
   }
 
   render() {
-    const { title } = this.state
+    const { title, error } = this.state
 
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Text style={styles.header}>What is the title of your new deck?</Text>
         <AppTextInput
-          placeholder="Deck Title"
-          change={title => this.setState({ title })}
+          placeholder={error ? 'Please fill in the deck title' : 'Deck Title'}
+          change={this.handleTitle}
           value={title}
+          error={error}
         />
 
         <View style={{ alignItems: 'center', marginTop: 20 }}>
