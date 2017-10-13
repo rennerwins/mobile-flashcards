@@ -5,33 +5,50 @@ import { connect } from 'react-redux'
 import { addNewCard } from '../../actions'
 import AppTextInput from '../Base/AppTextInput'
 import AppAndroidButton from '../Base/AppAndroidButton'
-import { blue, white } from '../../utils/colors'
+import { blue, white, red } from '../../utils/colors'
 
 class NewCardView extends Component {
   state = {
     question: '',
-    answer: ''
+    answer: '',
+    questionError: false,
+    answerError: false
   }
 
   handleQuestion = e => {
-    this.setState(() => ({ question: e }))
+    this.setState(() => ({ question: e, questionError: false }))
   }
 
   handleAnswer = e => {
-    this.setState(() => ({ answer: e }))
+    this.setState(() => ({ answer: e, answerError: false }))
   }
 
   handleSubmit = () => {
     const { title } = this.props.navigation.state.params
-    const card = this.state
+    const { question, answer } = this.state
 
-    this.props.addNewCard(title, card)
-    this.setState(() => ({
-      question: '',
-      answer: ''
-    }))
-    this.goBack()
-    Keyboard.dismiss()
+    if (question !== '' && answer !== '') {
+      const card = {
+        question,
+        answer
+      }
+
+      this.props.addNewCard(title, card)
+      this.setState(() => ({
+        question: '',
+        answer: '',
+        questionError: false,
+        answerError: false
+      }))
+      this.goBack()
+      Keyboard.dismiss()
+    } else if (question === '') {
+      console.log('question error')
+      this.setState(() => ({ questionError: true }))
+    } else if (answer === '') {
+      console.log('answer error')
+      this.setState(() => ({ answerError: true }))
+    }
   }
 
   goBack = () => {
@@ -43,7 +60,7 @@ class NewCardView extends Component {
   }
 
   render() {
-    const { question, answer } = this.state
+    const { question, answer, questionError, answerError } = this.state
 
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
@@ -52,7 +69,9 @@ class NewCardView extends Component {
             placeholder="What is the question?"
             change={this.handleQuestion}
             value={question}
+            error={questionError}
           />
+          <Text style={styles.errorText}>{questionError && 'Please fill in the question'}</Text>
         </View>
 
         <View style={{ marginBottom: 40 }}>
@@ -60,7 +79,9 @@ class NewCardView extends Component {
             placeholder="What is the answer?"
             change={this.handleAnswer}
             value={answer}
+            error={answerError}
           />
+          <Text style={styles.errorText}>{answerError && 'Please fill in the answer'}</Text>
         </View>
 
         <View style={{ alignItems: 'center' }}>
@@ -81,6 +102,10 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
     paddingVertical: 50
+  },
+  errorText: {
+    color: red,
+    paddingLeft: 4
   }
 })
 
