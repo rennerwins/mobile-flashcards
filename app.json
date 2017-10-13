@@ -10,6 +10,9 @@
     "notification": {
       "icon": "https://image.ibb.co/kjvPFb/mobile_flashcards_45.png"
     },
+    "ios": {
+      "bundleIdentifier": "org.mobileflashcards.exp"
+    },
     "android": {
       "package": "org.mobileflashcards.exp"
     }
