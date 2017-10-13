@@ -1,15 +1,15 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { white, gray } from '../../utils/colors'
 
 function Deck({ title, questions, press }) {
   return (
-    <TouchableNativeFeedback onPress={press} background={TouchableNativeFeedback.SelectableBackground()}>
+    <TouchableOpacity onPress={press}>
       <View style={styles.container}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.cards}>{questions.length} cards</Text>
       </View>
-    </TouchableNativeFeedback>
+    </TouchableOpacity>
   )
 }
 

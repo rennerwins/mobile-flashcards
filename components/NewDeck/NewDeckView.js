@@ -11,7 +11,7 @@ import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import { createNewTitle, createDeck } from '../../actions'
 import AppTextInput from '../Base/AppTextInput'
-import AppAndroidButton from '../Base/AppAndroidButton'
+import AppButton from '../Base/AppButton'
 import { blue, white, red } from '../../utils/colors'
 
 class NewDeckView extends Component {
@@ -74,7 +74,7 @@ class NewDeckView extends Component {
         </Text>
 
         <View style={{ alignItems: 'center', marginTop: 20 }}>
-          <AppAndroidButton
+          <AppButton
             press={this.handleSubmit}
             backgroundColor={blue}
             borderColor={blue}

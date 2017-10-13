@@ -4,7 +4,7 @@ import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import { addNewCard } from '../../actions'
 import AppTextInput from '../Base/AppTextInput'
-import AppAndroidButton from '../Base/AppAndroidButton'
+import AppButton from '../Base/AppButton'
 import { blue, white, red } from '../../utils/colors'
 
 class NewCardView extends Component {
@@ -83,7 +83,7 @@ class NewCardView extends Component {
         </View>
 
         <View style={{ alignItems: 'center' }}>
-          <AppAndroidButton
+          <AppButton
             press={this.handleSubmit}
             backgroundColor={blue}
             borderColor={blue}

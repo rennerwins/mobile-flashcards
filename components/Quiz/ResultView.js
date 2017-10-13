@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import AppAndroidButton from '../Base/AppAndroidButton'
+import AppButton from '../Base/AppButton'
 import { blue, white, red, green } from '../../utils/colors'
 
 function ResultView({ percent, correct, questionLength, onQuizRestart, goBacktoDeck }) {
@@ -17,7 +17,7 @@ function ResultView({ percent, correct, questionLength, onQuizRestart, goBacktoD
       </View>
 
       <View style={{ alignItems: 'center' }}>
-        <AppAndroidButton
+        <AppButton
           press={onQuizRestart}
           backgroundColor={green}
           borderColor={green}
@@ -25,7 +25,7 @@ function ResultView({ percent, correct, questionLength, onQuizRestart, goBacktoD
           title="Restart Quiz"
         />
 
-        <AppAndroidButton
+        <AppButton
           press={goBacktoDeck}
           backgroundColor={blue}
           borderColor={blue}

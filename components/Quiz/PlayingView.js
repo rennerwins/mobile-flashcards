@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import AppAndroidButton from '../Base/AppAndroidButton'
+import AppButton from '../Base/AppButton'
 import { blue, white, red, green } from '../../utils/colors'
 
 function Playing({
@@ -30,7 +30,7 @@ function Playing({
       </View>
 
       <View style={{ alignItems: 'center' }}>
-        <AppAndroidButton
+        <AppButton
           press={onCorrectAnswered}
           backgroundColor={green}
           borderColor={green}
@@ -38,7 +38,7 @@ function Playing({
           title="Correct"
         />
 
-        <AppAndroidButton
+        <AppButton
           press={onIncorrectAnswered}
           backgroundColor={red}
           borderColor={red}

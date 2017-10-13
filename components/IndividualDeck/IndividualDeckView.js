@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Platform } from 'react-native'
 import { connect } from 'react-redux'
-import AppAndroidButton from '../Base/AppAndroidButton'
+import AppButton from '../Base/AppButton'
 import { orange, white, gray, blue, red } from '../../utils/colors'
 
 class IndividualDeckView extends Component {
@@ -36,14 +36,14 @@ class IndividualDeckView extends Component {
         </View>
 
         <View style={styles.buttonAction}>
-          <AppAndroidButton
+          <AppButton
             press={() => this.addNewCard(decks[id].title)}
             backgroundColor={white}
             borderColor={blue}
             color={blue}
             title="Add Card"
           />
-          <AppAndroidButton
+          <AppButton
             press={() => this.startQuiz(decks[id])}
             backgroundColor={blue}
             borderColor={blue}
