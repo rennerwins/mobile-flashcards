@@ -84,7 +84,7 @@ class QuizView extends Component {
           <ResultView
             {...this.state}
             onQuizRestart={this.onQuizRestart}
-            goBacktoDeck={this.goBackToDeck}
+            goBackToDeck={this.goBackToDeck}
           />
         )}
       </View>

@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import AppButton from '../Base/AppButton'
 import { orange, white, gray, blue, red } from '../../utils/colors'
 
-class IndividualDeckView extends Component {
+class IndividualDeckView extends PureComponent {
   state = {
     error: false
   }

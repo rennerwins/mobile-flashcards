@@ -40,21 +40,13 @@ class NewCardView extends Component {
         questionError: false,
         answerError: false
       }))
-      this.goBack()
+      this.props.navigation.goBack()
       Keyboard.dismiss()
     } else if (question === '') {
       this.setState(() => ({ questionError: true }))
     } else if (answer === '') {
       this.setState(() => ({ answerError: true }))
     }
-  }
-
-  goBack = () => {
-    this.props.navigation.dispatch(
-      NavigationActions.back({
-        key: ''
-      })
-    )
   }
 
   render() {

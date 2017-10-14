@@ -4,8 +4,7 @@ import { AsyncStorage } from 'react-native'
 const NOTIFICATION_KEY = '@MobileFlashcards:notifications'
 
 export function percentageCalculation(correct, questionLength) {
-  let percent = Math.floor(correct / questionLength * 100)
-  return percent
+  return Math.floor(correct / questionLength * 100)
 }
 
 export function clearLocalNotification() {
