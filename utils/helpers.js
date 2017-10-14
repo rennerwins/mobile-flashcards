@@ -9,7 +9,6 @@ export function percentageCalculation(correct, questionLength) {
 }
 
 export function clearLocalNotification() {
-  console.log('clear')
   return AsyncStorage.removeItem(NOTIFICATION_KEY).then(
     Notifications.cancelAllScheduledNotificationsAsync
   )
