@@ -28,7 +28,7 @@ class NewCardView extends Component {
     const { question, answer } = this.state
 
     if (question !== '' && answer !== '') {
-      const card = {
+      let card = {
         question,
         answer
       }
