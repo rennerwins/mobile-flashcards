@@ -1,13 +1,14 @@
-import React from 'react'
-import { StyleSheet, View, StatusBar } from 'react-native'
 import { Constants } from 'expo'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import { StyleSheet, View, StatusBar } from 'react-native'
+import React from 'react'
 import thunk from 'redux-thunk'
-import reducer from './reducers'
+
 import { blue, lightGray, orange } from './utils/colors'
-import MainNavigator from './components/Base/Routes'
 import AppStatusBar from './components/Base/AppStatusBar'
+import MainNavigator from './components/Base/Routes'
+import reducer from './reducers'
 
 const store = createStore(reducer, applyMiddleware(thunk))
 

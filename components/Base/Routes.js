@@ -1,33 +1,31 @@
-import React from 'react'
+import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { Platform } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
-import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
+import React from 'react'
+
 import { blue, white, lightBlue } from '../../utils/colors'
 import DeckListView from '../DeckList/DeckListView'
-import NewDeckView from '../NewDeck/NewDeckView'
 import IndividualDeckView from '../IndividualDeck/IndividualDeckView'
 import NewCardView from '../NewCard/NewCardView'
+import NewDeckView from '../NewDeck/NewDeckView'
 import QuizView from '../Quiz/QuizView'
+
+const tabNavigationOptions = (label, iconColor, icon) => {
+  return {
+    tabBarLabel: label,
+    tabBarIcon: ({ iconColor }) => <MaterialCommunityIcons name={icon} size={30} color={blue} />
+  }
+}
 
 const Tabs = TabNavigator(
   {
     DeckListView: {
       screen: DeckListView,
-      navigationOptions: {
-        tabBarLabel: 'Decks',
-        tabBarIcon: ({ blue }) => (
-          <MaterialCommunityIcons name="folder-multiple-outline" size={30} color={blue} />
-        )
-      }
+      navigationOptions: tabNavigationOptions('Decks', blue, 'folder-multiple-outline')
     },
     NewDeckView: {
       screen: NewDeckView,
-      navigationOptions: {
-        tabBarLabel: 'New Deck',
-        tabBarIcon: ({ blue }) => (
-          <MaterialCommunityIcons name="cards-outline" size={30} color={blue} />
-        )
-      }
+      navigationOptions: tabNavigationOptions('New Deck', blue, 'cards-outline')
     }
   },
   {
@@ -50,6 +48,13 @@ const Tabs = TabNavigator(
     }
   }
 )
+
+const stackNavigationOptions = (navigation, headerStackStyle, headerTitle) => {
+  return ({ navigation }) => ({
+    ...headerStackStyle,
+    headerTitle
+  })
+}
 
 const MainNavigator = StackNavigator({
   Home: {
