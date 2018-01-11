@@ -1,8 +1,9 @@
-import React from 'react'
 import { TextInput, StyleSheet, Platform } from 'react-native'
+import React from 'react'
+
 import { blue, red, gray } from '../../utils/colors'
 
-function AppTextInput({ placeholder, change, value, error }) {
+const AppTextInput = ({ placeholder, change, value, error }) => {
   return (
     <TextInput
       underlineColorAndroid={error ? red : blue}

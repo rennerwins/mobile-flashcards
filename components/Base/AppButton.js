@@ -1,4 +1,5 @@
 import React from 'react'
+
 import {
   View,
   Text,
@@ -31,7 +32,7 @@ const AndroidButton = ({ backgroundColor, borderColor, color, press, title }) =>
   )
 }
 
-function AppButton(props) {
+const AppButton = props => {
   return (
     <View>{Platform.OS === 'ios' ? <IOSButton {...props} /> : <AndroidButton {...props} />}</View>
   )
